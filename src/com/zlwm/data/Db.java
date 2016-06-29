@@ -53,6 +53,7 @@ public class Db {
 	 {
 		  boolean flag=false;
 		  PreparedStatement state=null;
+		  int id,i;
 		  
 		  try {
 			   getConn();
@@ -60,36 +61,50 @@ public class Db {
 			   if(args!=null && args.length>0)
 			   {
 				   //setObject(a,b),a表示SQL中第几个参数，b表示该参数的值
-				    
+				    for (i = 0; i < args.length; i++) {
+				    	System.out.println("参数:"+i+"-"+args[i]);
+				    	state.setString(i+1, args[i]);
+				    }
 				    //execute用于看是否查到，返回boolean值
 				    //flag=state.execute();
 				    //System.out.println(flag);
-				    if(type==0)
-				    {
-				    	for (int i = 0; i < args.length; i++) {
-					    	System.out.println("参数:"+i+"-"+args[i]);
-					    	state.setString(i+1, args[i]);
-					    }
+				    //登录用户
+				    if(type==1)
+				    {	
 				    	 ResultSet rs=state.executeQuery(); 
-						 flag=rs.first();//参看java_ee_api,移动游标到第一行，如果为有效行则返回真，若结果集为空则为false;	    
+						 flag=rs.next();//参看java_ee_api,移动游标到第一行first,next，如果为有效行则返回真，若结果集为空则为false;	    
 				    }
-				    else if(type==1)
+				    //普通--update
+				    else if(type==2)
 				    {
-				    	for (int i = 0; i < args.length; i++) {
-					    	System.out.println("参数:"+i+"-"+args[i]);
-					    	state.setString(i+1, args[i]);
-					    }
 				    	 int rs=state.executeUpdate();
 				    	 if(rs==1)
 				    	 {
 				    		 flag=true;
 				    	 }
 				    }
-				    else if(type==2)
+				    //特殊-update-用户注册
+				    else if(type==21)
 				    {
-				    	String sqlForId="select id from user limit 1 order by id desc";
+				    	String sqlForId="select id from user order by id desc limit 1" ;
 				    	Statement stateForId=(Statement) conn.createStatement();
 				    	ResultSet rsForId= stateForId.executeQuery(sqlForId);
+				    	if(rsForId.next()==true)
+				    	{
+				    		id=rsForId.getInt("id");
+				    		++id;
+				    		System.out.println("id为："+id);
+				    	}
+				    	else{
+				    		id=1000000;
+				    	}
+				    	state.setString(i+1, String.valueOf(id));
+				    	int rs=state.executeUpdate();
+				    	if(rs==1)
+				    	 {
+				    		 flag=true;
+				    	 }
+				    	System.out.println("注册ID为："+id);
 				    }
 				   
 				    /*
