@@ -1,0 +1,25 @@
+user
+|-tel_id
+|-name
+|-password
+|-sex
+
+mood
+|-tel_id
+|-mood
+|-moodscore
+|-reason
+|-image //这个是发心情引用的其它图片，暂不用留着吧
+|-dateandtime
+
+moodplan
+|-tel_id
+|-tag1
+|-tag2
+|-tag3
+|-plan
+|-plan_name
+|-plan_num
+|-dateandtime
+
+笔记，bar显示app:layout_behavior="@string/appbar_scrolling_view_behavior"就不再覆盖bar了

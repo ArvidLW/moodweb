@@ -4,10 +4,10 @@
 <body> 
 <%
 Class.forName("com.mysql.jdbc.Driver"); // 加载数据库驱动，注册到驱动管理器
-String url ="jdbc:mysql://localhost:3306/test";// 数据库连接字符串
+String url ="jdbc:mysql://localhost:3306/mooddb";// 数据库连接字符串
 //test为你的数据库名 
-String username = "root";	// 数据库用户名
-String password = "111";	// 数据库密码
+String username = "zlwm";	// 数据库用户名
+String password = "Aazlwm";	// 数据库密码
 Connection conn= DriverManager.getConnection(url,username,password); 
 
 if(conn != null){

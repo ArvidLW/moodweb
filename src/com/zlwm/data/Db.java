@@ -11,8 +11,9 @@ import com.mysql.jdbc.Statement;
 public class Db {
 	private static String nameDriver = "com.mysql.jdbc.Driver";;
 	private static String url = "jdbc:mysql://localhost/mooddb";
-	private static String user = "root";
-	private static String password = "111";
+	private static String user = "zlwm";
+	private static String password = "Aazlwm";
+	//
 	
 	private static Connection conn=null;
 	

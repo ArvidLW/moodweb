@@ -19,13 +19,18 @@ public class LoginServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
-	/**
-	 * 这里get与POST代码完全一样，注释掉get,以免被简单利用
+	
+	 //这里get与POST代码完全一样，注释掉get,以免被简单利用
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("进入GET登录");
+		System.out.println("Login进入GET");
+		
+		resp.setContentType("text/html;charset=utf-8");
+		resp.setCharacterEncoding("utf-8");//写回之前调用
+		PrintWriter out = resp.getWriter();
+		out.write("登录GET指路为码");
 		
 		if( req == null){
 			return;
@@ -54,7 +59,7 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		
-	}*/
+	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
